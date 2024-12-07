@@ -1,0 +1,20 @@
+.body {
+  margin: 0px 0px 0px 0px;
+}
+
+.number {
+  border: 0px;
+  border-radius: 3px;
+  padding: 4px 10px;
+  width: calc(100%-10px);
+}
+
+.range {
+  width: calc(100%);
+  margin: 3px auto;
+  background: #28a745;
+}
+
+.text {
+  color: #FFA001;
+}

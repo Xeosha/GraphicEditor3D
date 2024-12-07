@@ -1,0 +1,16 @@
+.header {
+  background: #1C1C1E;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.body {
+  display: flex;
+}
+
+.menu {
+  background: #212124;
+  padding: 10px;
+}
+
+
