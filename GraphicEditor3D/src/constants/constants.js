@@ -12,7 +12,7 @@ const constants = {
   widthMenu: 230, // Ширина меню
   angleXDefault: 45, // Угол камеры по умолчанию по X
   angleYDefault: -45, // Угол камеры по умолчанию по Y
-  distanceDefault: 10, // Растояние до камеры по умолчанию
+  distanceDefault: 10, // Растояние до камеры по умолчанию (не влияет на триметрическую)
   pointsDefault: [], // Точки по умолчанию
   sticksDefault: [], // Палки по умолчанию
   addedPointDefault: new Point(0, 0, 0, pointRegimes.added), // Добавляемая точка по умолчанию

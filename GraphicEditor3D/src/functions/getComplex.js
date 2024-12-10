@@ -1,5 +1,5 @@
 /** Получить комплексную матрицу */
-const getComplex = ({ angleX, angleY, distance, size }) => {
+const getComplex = ({ angleX, angleY, distance, size}) => {
   const radian = 57.29577951308232;
   const sin = (angle) => Math.sin(angle / radian);
   const cos = (angle) => Math.cos(angle / radian);

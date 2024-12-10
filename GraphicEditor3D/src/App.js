@@ -31,7 +31,8 @@ const App = () => {
   const [height, heightChange] = useState(getHeight(window.innerHeight)); // Высота экрана
   const [angleX, angleXChange] = useState(constants.angleXDefault); // Угол вокруг оси X
   const [angleY, angleYChange] = useState(constants.angleYDefault); // Угол вокруг оси Y
-  const [distance, distanceChange] = useState(constants.distanceDefault); // Растояние от центра координат до камеры
+  const [distance, distanceChange] = useState(constants.distanceDefault); // Растояние от центра координат до камеры для общего масштабирования
+  const [size, sizeChange] = useState(constants.size); // расстояние от центра координат до камеры
 
   const [points, pointsChange] = useState([...constants.pointsDefault]); // Точки
   const [sticks, sticksChange] = useState([...constants.sticksDefault]); // Палки
@@ -60,7 +61,7 @@ const App = () => {
     angleX: angleX,
     angleY: angleY,
     distance: distance,
-    size: constants.size,
+    size: size,
   };
 
   const [DrawAddPoint, MenuAddPoint, resetAddPoint] = useAddPoint(
@@ -118,7 +119,7 @@ const App = () => {
     firstPointAddedStick,
     (v) => {
       firstPointAddedStick = v;
-    },
+    },  
     highlightedPoint,
     (v) => {
       highlightedPoint = v;
@@ -154,8 +155,23 @@ const App = () => {
 
   /** При кручении колесика */
   const onWheel = (e) => {
-    if (e.evt.deltaY < 0) distanceChange(distance * 0.9);
-    else if (e.evt.deltaY > 0) distanceChange(distance / 0.9);
+    const isRightButtonPressed = e.evt.buttons === 2; // Проверяем, была ли нажата правая кнопка мыши
+
+    if (isRightButtonPressed) {
+      // Если нажата ПКМ, изменяем size
+      if (e.evt.deltaY < 0) {
+        sizeChange(size * 0.9);  // Увеличиваем размер
+      } else if (e.evt.deltaY > 0) {
+        sizeChange(size / 0.9);  // Уменьшаем размер
+      }
+    } else {
+      // Если не нажата ПКМ, изменяем distance
+      if (e.evt.deltaY < 0) {
+        distanceChange(distance * 0.9);
+      } else if (e.evt.deltaY > 0) {
+        distanceChange(distance / 0.9);
+      }
+    }
   };
 
   /** Действия при переключении режима */
@@ -176,6 +192,7 @@ const App = () => {
     angleXChange(constants.angleXDefault);
     angleYChange(constants.angleYDefault);
     distanceChange(constants.distanceDefault);
+    sizeChange(constants.size);
     pointsChange([...constants.pointsDefault]);
     sticksChange([...constants.sticksDefault]);
     groupPointsChange([...constants.groupPointsDefault]);
